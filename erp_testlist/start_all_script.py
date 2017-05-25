@@ -42,7 +42,7 @@ def creatsuite():
 
 now_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
 file_name = (os.getcwd() + '/all_script/data/result/')+ now_time + 'result.html'
-fp = fiel(file_name, 'wb')
+fp = file(file_name, 'wb')
 runner = HTMLTestRunner.HTMLTestRunner(
 	stream = fp,
 	title = '测试用例报告',
