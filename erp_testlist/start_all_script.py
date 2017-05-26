@@ -2,7 +2,7 @@
 import time, os
 import unittest
 import HTMLTestRunner
-from send_mail import send_mail
+# from send_mail import send_mail
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
