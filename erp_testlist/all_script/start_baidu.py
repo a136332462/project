@@ -1,10 +1,12 @@
 from selenium import webdriver
+from public import login
+from public import linkaddress
 import time
-
-url ='http://www.baidu.com'
+login_url = linkaddress.link()
+print(login_url)
 driver = webdriver.Firefox()
-driver.get(url)
-driver.find_element_by_id('kw').send_keys('selenium')
-driver.find_element_by_id('su').click()
-time.sleep(3)
+driver.get(login_url)
+login.login(driver)
+time.sleep(2)
 driver.quit()
+
