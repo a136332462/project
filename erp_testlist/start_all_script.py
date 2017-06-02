@@ -64,8 +64,8 @@ runner = HTMLTestRunner.HTMLTestRunner(
 	description = u'用例执行情况')
 
 if __name__ == '__main__':
-	# alltestnames = creatsuite()
-	# runner.run(alltestnames)
-	# fp.close()
+	alltestnames = creatsuite()
+	runner.run(alltestnames)
+	fp.close()
 	sendreport()
 	sendtext()
