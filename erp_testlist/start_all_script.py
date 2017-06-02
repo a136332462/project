@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf8')
 
 #查找测试报告，调用发邮件功能
 def sendreport():
-	result_dir = (os.getcwd() + '/all_script\data/result/')
+	result_dir = (os.getcwd() + '/all_script/data/result/')
 	lists  = os.listdir(result_dir)
 	lists.sort(key = lambda fn: os.path.getmtime(result_dir+ '/'+ fn )
 		if not os.path.isdir(result_dir+ '/'+ fn ) else 0)
