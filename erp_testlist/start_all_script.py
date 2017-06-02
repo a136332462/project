@@ -53,4 +53,3 @@ if __name__ == '__main__':
 	runner.run(alltestnames)
 	fp.close()
 	# sendreport()
-
