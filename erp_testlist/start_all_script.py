@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf8')
 
 #查找测试报告，调用发邮件功能
 def sendreport():
-	result_dir = (os.getcwd() + '/all_script/data/result/')
+	result_dir = (os.getcwd() + '/all_script/data/html_result/')
 	lists  = os.listdir(result_dir)
 	lists.sort(key = lambda fn: os.path.getmtime(result_dir+ '/'+ fn )
 		if not os.path.isdir(result_dir+ '/'+ fn ) else 0)
@@ -41,7 +41,7 @@ def creatsuite():
 	return testunit
 
 now_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
-file_name = (os.getcwd() + '/all_script/data/result/')+ now_time + 'result.html'
+file_name = (os.getcwd() + '/all_script/data/html_result/')+ now_time + 'result.html'
 fp = file(file_name, 'wb')
 runner = HTMLTestRunner.HTMLTestRunner(
 	stream = fp,
