@@ -1,8 +1,8 @@
 #coding:utf-8
-import time, os
+import time, os, sys, time
 import unittest
 import HTMLTestRunner
-# from send_mail import send_mail
+from send_mail import send_mail
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -10,6 +10,21 @@ sys.setdefaultencoding('utf8')
 #查找测试报告，调用发邮件功能
 def sendreport():
 	result_dir = (os.getcwd() + '/all_script/data/html_result/')
+	lists  = os.listdir(result_dir)
+	lists.sort(key = lambda fn: os.path.getmtime(result_dir+ '/'+ fn )
+		if not os.path.isdir(result_dir+ '/'+ fn ) else 0)
+	print(u'最新测试生成的报告:'+ lists[-1])
+
+	#找到最新生成的文件
+	new_file = os.path.join(result_dir, lists[-1])
+	print new_file
+	
+	#调用发邮件模块
+	send_mail.send_mail(new_file)
+
+#查找测试输出内容，调用发邮件功能
+def sendtext():
+	result_dir = (os.getcwd() + '/all_script/data/text_result/')
 	lists  = os.listdir(result_dir)
 	lists.sort(key = lambda fn: os.path.getmtime(result_dir+ '/'+ fn )
 		if not os.path.isdir(result_dir+ '/'+ fn ) else 0)
@@ -49,7 +64,8 @@ runner = HTMLTestRunner.HTMLTestRunner(
 	description = u'用例执行情况')
 
 if __name__ == '__main__':
-	alltestnames = creatsuite()
-	runner.run(alltestnames)
-	fp.close()
-	# sendreport()
+	# alltestnames = creatsuite()
+	# runner.run(alltestnames)
+	# fp.close()
+	sendreport()
+	sendtext()

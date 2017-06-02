@@ -9,8 +9,6 @@ sys.path.append('..')
 from public import *
 reload(sys)
 sys.setdefaultencoding('utf-8')
-name = '物料列表'
-print_path.print_path(name)   #文件输出路径
 
 class Material_list(unittest.TestCase):
 
@@ -21,6 +19,8 @@ class Material_list(unittest.TestCase):
 		self.login_url = linkaddress.link()
 		self.verificationErrors = []
 		self.accept_alert_next = True
+		name = '物料列表'
+		# print_path.print_path(name)   #文件输出路径
 
 	# def test_Page_skip(self):
 	# 	'''物料页面点击跳转'''
@@ -60,6 +60,7 @@ class Material_list(unittest.TestCase):
 		print(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), skip_page)
 		self.assertEqual(input_page, int(skip_page), msg = '点击页面跳转失败，输入页面为%s，实际跳转页面为%s'%(input_page, skip_page))
 		print(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), 'fasdsdsdsdsdsdsdsdsdsd')
+	
 	def tearDown(self):
 		self.driver.quit()
 		self.assertEqual([], self.verificationErrors)
