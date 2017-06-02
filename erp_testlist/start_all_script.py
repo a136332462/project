@@ -9,7 +9,18 @@ sys.setdefaultencoding('utf8')
 
 #查找测试报告，调用发邮件功能
 def sendreport():
-	result_dir = (os.getcwd() + '/all_script/data/html_result/')
+	new_files = []
+	result_html = (os.getcwd() + '/all_script/data/html_result/')
+	lists  = os.listdir(result_html)
+	lists.sort(key = lambda fn: os.path.getmtime(result_html+ '/'+ fn )
+		if not os.path.isdir(result_html+ '/'+ fn ) else 0)
+	print(u'最新测试生成的报告:'+ lists[-1])
+
+	#找到最新生成的文件
+	new_file = os.path.join(result_html, lists[-1])
+	new_files.append(new_file)
+
+	result_dir = (os.getcwd() + '/all_script/data/text_result/')
 	lists  = os.listdir(result_dir)
 	lists.sort(key = lambda fn: os.path.getmtime(result_dir+ '/'+ fn )
 		if not os.path.isdir(result_dir+ '/'+ fn ) else 0)
@@ -17,10 +28,11 @@ def sendreport():
 
 	#找到最新生成的文件
 	new_file = os.path.join(result_dir, lists[-1])
-	print new_file
+	new_files.append(new_file)
+	print new_files
 	
 	#调用发邮件模块
-	send_mail.send_mail(new_file)
+	send_mail.send_mail(new_files)
 
 #查找测试输出内容，调用发邮件功能
 def sendtext():
@@ -64,8 +76,8 @@ runner = HTMLTestRunner.HTMLTestRunner(
 	description = u'用例执行情况')
 
 if __name__ == '__main__':
-	alltestnames = creatsuite()
-	runner.run(alltestnames)
-	fp.close()
+	# alltestnames = creatsuite()
+	# runner.run(alltestnames)
+	# fp.close()
 	sendreport()
-	sendtext()
+	# sendtext()

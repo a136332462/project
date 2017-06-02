@@ -6,7 +6,7 @@ import email.MIMEText
 import email.MIMEBase
 import mimetypes
 
-def send_mail(file_name):
+def send_mail(file_names):
 
 	# 构造MIMEMultipart对象做为根容器  
 	main_msg = email.MIMEMultipart.MIMEMultipart() 
@@ -20,6 +20,10 @@ def send_mail(file_name):
 	main_msg['Date'] = email.Utils.formatdate( ) 
 	server = smtplib.SMTP_SSL("smtp.qq.com",465)
 	server.login("136332462@qq.com","nvoinhqijqzgbigg")
+
+	for file_name in file_names: 
+		data = open(file_name, 'rb') 
+		ctype,encoding = mimetypes.guess_type(file_name)
 	  	  
 	# 构造MIMEText对象做为邮件显示内容并附加到根容器  
 	#定义正文

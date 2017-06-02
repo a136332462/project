@@ -20,7 +20,7 @@ class Material_list(unittest.TestCase):
 		self.verificationErrors = []
 		self.accept_alert_next = True
 		name = '物料列表'
-		# print_path.print_path(name)   #文件输出路径
+		print_path.print_path(name)   #文件输出路径
 
 	# def test_Page_skip(self):
 	# 	'''物料页面点击跳转'''
