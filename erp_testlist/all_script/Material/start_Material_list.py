@@ -11,6 +11,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 class Material_list(unittest.TestCase):
+
 	'''物料列表'''
 	def setUp(self):
 		#参数设置
