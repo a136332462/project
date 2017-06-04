@@ -64,4 +64,4 @@ if __name__ == '__main__':
 	alltestnames = creatsuite()
 	runner.run(alltestnames)
 	fp.close()
-	sendreport()
+	# sendreport()

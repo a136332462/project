@@ -24,7 +24,7 @@ def send_mail(file_names):
 	# 构造MIMEText对象做为邮件显示内容并附加到根容器  
 	#定义正文
 	now_time = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime(time.time()))
-	mail_body = '尊敬的领导:\n    您好，这是'+ now_time+  '测试报告，请您查收.\n    具体内容请参见附件.'
+	mail_body = '尊敬的领导:\n    您好，这是'+ now_time+  '结束的测试报告，请您查收.\n    具体内容请参见附件.'
 	text_msg=email.MIMEText.MIMEText(mail_body, _subtype='html', _charset='utf-8') 
 	main_msg.attach(text_msg)   
 
