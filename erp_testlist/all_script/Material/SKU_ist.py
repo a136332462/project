@@ -27,6 +27,7 @@ class Sku_list(unittest.TestCase):
 		'''点击新增按钮跳转'''
 		print('%s  开始新增按钮点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
 		driver = self.driver
+		driver.get(login_url)
 		login.login(driver)
 		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
 		time.sleep(1)
@@ -46,6 +47,7 @@ class Sku_list(unittest.TestCase):
 		'''输入存在的sku标题筛选信息'''
 		print('%s  开始输入存在的sku标题测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
 		driver = self.driver
+		driver.get(login_url)
 		login.login(driver)
 		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
 		time.sleep(1)

@@ -21,12 +21,13 @@ class Material_list(unittest.TestCase):
 		self.verificationErrors = []
 		self.accept_alert_next = True
 		name = '物料列表'
-		print_path.print_path(name)   #文件输出路径
+		# print_path.print_path(name)   #文件输出路径
 
 	def test_add_skip(self):
 		'''点击新增按钮跳转'''
 		print('%s  开始新增按钮点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
 		driver = self.driver
+		driver.get(self.login_url)
 		login.login(driver)
 		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
 		time.sleep(1)
