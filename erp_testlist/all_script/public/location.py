@@ -10,7 +10,7 @@ def findName(driver, name):
 	f = driver.find_element_by_name(name)
 	return f
 
-def findClassNamw(driver, name):
+def findClassName(driver, name):
 	f = driver.find_element_by_class_name(name)
 	return f
 
