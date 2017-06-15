@@ -1,6 +1,7 @@
 #coding:utf-8
 import time, os, sys, time
 import unittest
+import  threading
 import HTMLTestRunner
 from send_mail import send_mail
 import sys
@@ -52,7 +53,7 @@ def creatsuite():
 		testunit.addTests(test_case)
 	return testunit
 
-now_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
+now_time = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime(time.time()))
 file_name = (os.getcwd() + '/all_script/data/html_result/')+ now_time + 'result.html'
 fp = file(file_name, 'wb')
 runner = HTMLTestRunner.HTMLTestRunner(
@@ -60,8 +61,25 @@ runner = HTMLTestRunner.HTMLTestRunner(
 	title = '测试用例报告',
 	description = u'用例执行情况')
 
+def EEEEEmultiRunCase(suite,casedir):
+	proclist=[]
+	s=0
+	for i in suite:
+		runner = HTMLTestRunner.HTMLTestRunner(
+			stream = fp,
+			title = '测试用例报告',
+			description = u'用例执行情况')
+		proc =threading.Thread(target=runner.run(i),args=(i,))
+		proclist.append(proc)
+		s=s+1
+	return proclist
+
 if __name__ == '__main__':
 	alltestnames = creatsuite()
-	runner.run(alltestnames)
+	proclist = EEEEEmultiRunCase(alltestnames[0],alltestnames[1])
+	for proc in proclist:
+		proc.start()
+	for proc in proclist:
+		proc.join()
 	fp.close()
 	# sendreport()
