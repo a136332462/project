@@ -1,8 +1,8 @@
 #coding:utf-8
 import time, os, sys, time
 import unittest
-import  threading
 import HTMLTestRunner
+import  threading
 from send_mail import send_mail
 import sys
 reload(sys)
@@ -49,37 +49,33 @@ def creatsuite():
 		top_level_dir = None)
 
 	#discover方法筛选出来的用例，循环添加到测试套件中
+	num = 0
 	for test_case in discover:
 		testunit.addTests(test_case)
-	return testunit
+		num += 1
+	return testunit,num
 
-now_time = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime(time.time()))
+now_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
 file_name = (os.getcwd() + '/all_script/data/html_result/')+ now_time + 'result.html'
 fp = file(file_name, 'wb')
-runner = HTMLTestRunner.HTMLTestRunner(
-	stream = fp,
-	title = '测试用例报告',
-	description = u'用例执行情况')
 
-def EEEEEmultiRunCase(suite,casedir):
+#========================将测试用例添加多进程,开始运行并生成测试报告========================
+def EEEEEmultiRunCase(dir):
+	suite = dir[0]
 	proclist=[]
 	s=0
 	for i in suite:
-		runner = HTMLTestRunner.HTMLTestRunner(
-			stream = fp,
-			title = '测试用例报告',
-			description = u'用例执行情况')
+		runner =HTMLTestRunner.HTMLTestRunner(stream=fp,title=u'测试报告',description=u'用例执行情况：' )
 		proc =threading.Thread(target=runner.run(i),args=(i,))
 		proclist.append(proc)
 		s=s+1
-	return proclist
-
-if __name__ == '__main__':
-	alltestnames = creatsuite()
-	proclist = EEEEEmultiRunCase(alltestnames[0],alltestnames[1])
 	for proc in proclist:
 		proc.start()
 	for proc in proclist:
 		proc.join()
-	fp.close()
+
+if __name__ == '__main__':
+	alltestnames = creatsuite()
+	EEEEEmultiRunCase(alltestnames)
 	# sendreport()
+	fp.close()

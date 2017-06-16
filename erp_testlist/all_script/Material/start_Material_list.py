@@ -21,7 +21,7 @@ class Material_list(unittest.TestCase):
 		self.verificationErrors = []
 		self.accept_alert_next = True
 		name = '物料列表'
-		# print_path.print_path(name)   #文件输出路径
+		print_path.print_path(name)   #文件输出路径
 
 	def test_add_skip(self):
 		'''点击新增按钮跳转'''
@@ -37,57 +37,57 @@ class Material_list(unittest.TestCase):
 		time.sleep(1)
 		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[2]/div/button').click()   #点击左上角新增按钮
 		proving_info = '规格'    #使用新增页面的唯一存在的"规格"字段来验证
-		print('%s 使用新增页面的唯一存在的"%s"字段来验证' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), proving_info))
+		print('%s 使用新增页面的唯一存在的:%s字段来验证' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), proving_info))
 		gain_info = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/div/form/div[2]/h3').text   #定位跳转后的规格字段
-		print('%s 定位到新增页面的"%s"字段' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), gain_info))
+		print('%s 定位到新增页面的:%s字段' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), gain_info))
 		self.assertEqual(proving_info, gain_info, msg = '点击物料列表左上角新增按钮跳转失败')
 		print('%s  结束新增按钮点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
 
-	def test_Page_skip(self):
-		'''物料页面点击跳转'''
-		print('%s  开始物料页面点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
-		driver = self.driver 
-		driver.get(self.login_url)
-		login.login(driver)
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
-		time.sleep(1)
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/div').click()   #点击物料管理
-		time.sleep(1)
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/ul/li[1]').click()   #点击物料列表
-		time.sleep(1)
-		text1 = location.findClassName(driver, 'el-pager').find_element_by_class_name('active').text
-		print(text1)
-		click_page = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/ul/li[8]').text  #获取最后一页的值
-		print('%s  获取最后一页的值值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), click_page))
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/ul/li[8]').click()  #点击最后一页跳转
-		time.sleep(1)
-		skip_page = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').get_attribute('value')   #获取跳转后输入框的值
-		print('%s  跳转后输入框的值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), skip_page))
-		self.assertEqual(click_page, skip_page, msg = '点击页面跳转失败，点击页面为%s，实际跳转页面为%s'%(click_page, skip_page))   #验证点击跳转的值域输入框的值是否相等
-		print('%s  结束物料页面点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
+	# def test_Page_skip(self):
+	# 	'''物料页面点击跳转'''
+	# 	print('%s  开始物料页面点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
+	# 	driver = self.driver 
+	# 	driver.get(self.login_url)
+	# 	login.login(driver)
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
+	# 	time.sleep(1)
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/div').click()   #点击物料管理
+	# 	time.sleep(1)
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/ul/li[1]').click()   #点击物料列表
+	# 	time.sleep(1)
+	# 	text1 = location.findClassName(driver, 'el-pager').find_element_by_class_name('active').text
+	# 	print(text1)
+	# 	click_page = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/ul/li[8]').text  #获取最后一页的值
+	# 	print('%s  获取最后一页的值值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), click_page))
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/ul/li[8]').click()  #点击最后一页跳转
+	# 	time.sleep(1)
+	# 	skip_page = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').get_attribute('value')   #获取跳转后输入框的值
+	# 	print('%s  跳转后输入框的值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), skip_page))
+	# 	self.assertEqual(click_page, skip_page, msg = '点击页面跳转失败，点击页面为%s，实际跳转页面为%s'%(click_page, skip_page))   #验证点击跳转的值域输入框的值是否相等
+	# 	print('%s  结束物料页面点击跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
 
-	def test_Input_skip(self):
-		'''物料页面输入跳转'''
-		print('%s  开始物料页面输入跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
-		driver = self.driver 
-		driver.get(self.login_url)
-		login.login(driver)
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
-		time.sleep(1)
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/div').click()   #点击物料管理
-		time.sleep(1)
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/ul/li[1]').click()   #点击物料列表
-		time.sleep(1)
-		input_page = 2   #设置输入框的值为2
-		print('%s  设置输入框的值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), input_page))
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').clear()   #清空输入框内文字
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').send_keys(input_page)   #将值输入到输入框内
-		location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').send_keys(Keys.ENTER)   #按enter键跳转
-		time.sleep(1)
-		skip_page = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/ul/li[2]').text   #获取跳转后的页面的值
-		print('%s  跳转后的页面的值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), skip_page))
-		self.assertEqual(input_page, int(skip_page), msg = '点击页面跳转失败，输入页面为%s，实际跳转页面为%s'%(input_page, skip_page))
-		print('%s  结束物料页面输入跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
+	# def test_Input_skip(self):
+	# 	'''物料页面输入跳转'''
+	# 	print('%s  开始物料页面输入跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
+	# 	driver = self.driver 
+	# 	driver.get(self.login_url)
+	# 	login.login(driver)
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/div').click()   #点击物料
+	# 	time.sleep(1)
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/div').click()   #点击物料管理
+	# 	time.sleep(1)
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[1]/aside/ul/li[1]/ul/li[1]/ul/li[1]').click()   #点击物料列表
+	# 	time.sleep(1)
+	# 	input_page = 2   #设置输入框的值为2
+	# 	print('%s  设置输入框的值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), input_page))
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').clear()   #清空输入框内文字
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').send_keys(input_page)   #将值输入到输入框内
+	# 	location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/span[3]/input').send_keys(Keys.ENTER)   #按enter键跳转
+	# 	time.sleep(1)
+	# 	skip_page = location.findXpath(driver, '/html/body/div/div/div[2]/div/div[2]/section/div/div[2]/section/div[4]/div/ul/li[2]').text   #获取跳转后的页面的值
+	# 	print('%s  跳转后的页面的值为:%s' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time())), skip_page))
+	# 	self.assertEqual(input_page, int(skip_page), msg = '点击页面跳转失败，输入页面为%s，实际跳转页面为%s'%(input_page, skip_page))
+	# 	print('%s  结束物料页面输入跳转测试' %(time.strftime("%Y-%m-%d:%H:%M:%S",time.localtime(time.time()))))
 	
 	def tearDown(self):
 		self.driver.quit()
